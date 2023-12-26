@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        .container {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    
+        <table class="container">
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" id="name" required></td>
+            </tr>
+
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" id="email" required></td>
+            </tr>
+
+            <tr>
+                <td>Contact:</td>
+                <td><input type="number" id="contact" required></td>
+            </tr>
+
+            <tr>
+                <td>Course:</td>
+                <td> <select class="form-select" id="course" required>
+                        <option selected disabled value="">---</option>
+                        <option>Front-End</option>
+                        <option>Back-End</option>
+                    </select></td>
+            </tr>
+
+            <tr>
+                <td>Address:</td>
+                <td><input type="text" id="address" required></td>
+            </tr>
+            <tr>
+
+                <td><button class="container" onclick="submit()">Send Form</button></td>
+            </tr>
+        </table>
+
+    
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script>
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnIcLSeTNyzi6HkXT3Wv1gUzyf4j5hav4",
+            authDomain: "formdata-e6a75.firebaseapp.com",
+            databaseURL: "https://formdata-e6a75-default-rtdb.firebaseio.com",
+            projectId: "formdata-e6a75",
+            storageBucket: "formdata-e6a75.appspot.com",
+            messagingSenderId: "507004123935",
+            appId: "1:507004123935:web:14e72b7eb2e62007b70e2a",
+            measurementId: "G-HC3JXT3BYK"
+        };
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+        
+        function submit() {
+            var na = document.getElementById('name').value;
+            var ema = document.getElementById('email').value;
+            var con = document.getElementById('contact').value;
+            var cou = document.getElementById('course').value;
+            var add = document.getElementById('address').value;  
+            // console.log(na);
+            // console.log(ema);
+            // console.log(con);
+            // console.log(cou);
+            // console.log(add);
+            database.ref("form").push({
+                name:na,
+                email:ema,
+                contact:con,
+                course:cou,
+                address:add
+            })
+            
+        }
+
+    </script>
+
+</body>
+
+</html>
